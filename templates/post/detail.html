@@ -1,0 +1,25 @@
+{% load static %}
+{% load article_tags %}
+
+
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li>{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
+
+<p>Author: {{ article.author }}</p>
+
+<p>Title: {{ article.title }}</p>
+
+<p>New Title: {% add_random_number article.title %}</p>
+<br>
+{% comment %}<p>Description: {% select_description article language %}</p>{% endcomment %}
+<p>Description: {{ article.description|safe }}</p>
+ <p><a href="/article/add_like/{{article.id}}"></a> like: {{ article.like }}</p>
+ <p><a href="{% url 'detail' article.id %}"></a> dislike: {{ article.unlike }}</p>
+
