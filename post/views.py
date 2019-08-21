@@ -56,32 +56,30 @@ class ArticleDetailView(DetailView):
         context = super(ArticleDetailView, self).get_context_data()
         return context
 
+    def add_like(request, article_id):
+        try:
+            if article_id in request.COOKIES:
+                article = Article.objects.get(id=article_id)
+                article.like += 1
+                article.save()
+                response = redirect('/')
+                response.set_cookie(article_id, 'navi')
+                return response
+        except ObjectDoesNotExist:
+            raise Http404
+        return redirect('/')
 
-def add_like(request, article_id):
-    try:
-        if article_id in request.COOKIES:
-            article = Article.objects.get(id=article_id)
-            article.like += 1
-            article.save()
-            response = redirect('/')
-            response.set_cookie(article_id, 'navi')
-            return response
-    except ObjectDoesNotExist:
-        raise Http404
-    return redirect('/')
-
-
-def add_unlike(request, article_id):
-    try:
-        if article_id in request.COOKIES:
-            article = Article.objects.get(id=article_id)
-            article.unlike += 1
-            article.save()
-            response = redirect('/')
-            response.set_cookie(article_id, 'navi')
-            return response
-    except ObjectDoesNotExist:
-        raise Http404
-    return redirect('/')
+    def add_unlike(request, article_id):
+        try:
+            if article_id in request.COOKIES:
+                article = Article.objects.get(id=article_id)
+                article.unlike += 1
+                article.save()
+                response = redirect('/')
+                response.set_cookie(article_id, 'navy')
+                return response
+        except ObjectDoesNotExist:
+            raise Http404
+        return redirect('/')
 
 

@@ -19,14 +19,12 @@ from post.views import (
     IndexView,
     ArticleCreateView,
     ArticleDetailView,
-    add_like,
-    add_unlike
+
 )
 from account.views import ProfileDetailView, SignUp
 from django.conf.urls.i18n import i18n_patterns
 from django.conf import settings
 from django.conf.urls.static import static
-
 
 
 urlpatterns = i18n_patterns(
@@ -35,8 +33,8 @@ urlpatterns = i18n_patterns(
     # Post
     path('post/create', ArticleCreateView.as_view(), name='create'),
     path('post/<int:article_id>', ArticleDetailView.as_view(), name='detail'),
-    path('post/add_like/<int:article_id>', add_like),
-    path('post/add_unlike/<int:article_id>', add_unlike),
+    path('post/add_like/<int:article_id>', ArticleDetailView.as_view()),
+    path('post/add_unlike/<int:article_id>', ArticleDetailView.as_view()),
     # Account/Profile
     path('account/profile/<int:profile_id>', ProfileDetailView.as_view(), name='profile'),
     path('account/', include('django.contrib.auth.urls')),

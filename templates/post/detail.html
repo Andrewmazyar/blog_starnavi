@@ -20,6 +20,6 @@
 <br>
 {% comment %}<p>Description: {% select_description article language %}</p>{% endcomment %}
 <p>Description: {{ article.description|safe }}</p>
- <p><a href="/article/add_like/{{article.id}}"></a> like: {{ article.like }}</p>
- <p><a href="{% url 'detail' article.id %}"></a> dislike: {{ article.unlike }}</p>
+ <a href="/article/add_like/{{article.id}}">like: {{ article.like }}</a>
+ <a href="/article/add_unlike/{{article.id}}">dislike: {{ article.unlike }}</a>
 
