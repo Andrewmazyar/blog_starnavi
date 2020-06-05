@@ -1,4 +1,4 @@
-Django==2.2
+Django==2.2.13
 django-cuser==2017.3.16
 django-tinymce==2.8.0
 modeltranslation==0.25
